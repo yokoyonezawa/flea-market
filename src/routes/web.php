@@ -13,14 +13,36 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\StripePaymentController;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
 
-
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+
+
+
+Route::get('/verify-email', EmailVerificationPromptController::class)
+    ->name('verification.notice');
+
+Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
+
+
+
+Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    ->middleware(['throttle:6,1'])
+    ->name('verification.send');
+
+
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -56,6 +78,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/profile/address/update', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
 
+    Route::get('/edit_address', [ProfileController::class, 'editAddress'])->name('edit_address');
+
     Route::get('/sell', [ProductController::class, 'create'])->name('sell');
 
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -68,5 +92,3 @@ Route::post('/logout', function (){
     auth()->logout();
     return redirect('/login');
 })->name('logout');
-
-

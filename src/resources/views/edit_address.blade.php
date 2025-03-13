@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ asset('css/edit_address.css') }}">
+
 @section('content')
-<div class="container">
+<div class="edit-address-container">
     <h2>配送先住所の変更</h2>
 
     <form action="{{ route('profile.address.update') }}" method="POST">

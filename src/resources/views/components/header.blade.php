@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+
 <header>
     <div class="header__logo">
         <a href="{{ url('/') }}">
@@ -9,9 +11,6 @@
             <input type="text" name="query" placeholder="なにをお探しですか？" class="search-box" value="{{ request('query') }}">
             <button type="submit" class="search-button">検索</button>
         </form>
-
-
-
     </div>
     <nav>
         <ul class="header-links">
@@ -25,9 +24,7 @@
                 </form>
             @endauth
             <li><a href="{{ route('mypage') }}">マイページ</a></li>
-            <li><a href="{{ route('sell') }}">出品</a></li>
-
+            <li><a href="{{ route('sell') }}" class="sell-button">出品</a></li>
         </ul>
     </nav>
-
 </header>

@@ -1,39 +1,53 @@
-.purchase-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
 }
 
+.purchase-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+
 .page-title {
-    font-size: 24px;
-    color: #fff;
-    background: #333;
-    padding: 10px;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
 .purchase-content {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.purchase-left {
+    width: 60%;
 }
 
 .product-info {
-    flex: 1;
-    display: flex;
-    gap: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .product-image img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: auto;
     object-fit: cover;
-    background: #ddd;
 }
 
 .product-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 400px;
+}
+
+.product-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .price {
@@ -42,36 +56,89 @@
 }
 
 .payment-shipping {
-    flex: 1;
+    margin-top: 40px;
 }
 
-.payment-method,
-.shipping-info {
+.payment-method {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
+.payment-method select {
+    width:50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    margin-top: 10px;
+}
+
+.shipping-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.address {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.address_change {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 .change-link {
-    color: blue;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.change-link:hover {
     text-decoration: underline;
 }
 
+
+.purchase-right {
+    width: 35%;
+}
+
 .order-summary {
-    flex: 1;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.summary-box {
+    padding: 10px 0;
+}
+
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
 }
 
 .purchase-button {
     width: 100%;
-    padding: 10px;
-    background: #ff5a5a;
+    padding: 15px;
+    background-color: #ff7043;
     color: white;
     border: none;
-    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .purchase-button:hover {
-    background: #ff4040;
+    background-color: #e65c2f;
 }

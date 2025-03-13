@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('index.css/.css') }}">
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
 
 @section('content')
 <div class="container">
-    <h2>おすすめ商品</h2>
-    <a href="{{ route('product.mylist', ['query' => request('query')]) }}">マイリスト</a>
+    <div class="links-container">
+        <a href="{{ route('index') }}" class="link-item {{ request()->routeIs('index') ? 'active' : '' }}">おすすめ</a>
+        <a href="{{ route('product.mylist', ['query' => request('query')]) }}" class="link-item">マイリスト</a>
+    </div>
 
     @if($items->isEmpty())
         <p>検索結果が見つかりませんでした。</p>

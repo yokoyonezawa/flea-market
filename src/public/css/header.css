@@ -1,0 +1,88 @@
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header__logo img {
+    height: 30px;
+}
+
+.header-search form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+
+.search-box {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.search-button {
+    padding: 5px 10px;
+    background-color: white;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.search-button:hover {
+    background-color: #f0f0f0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+
+}
+
+
+.header-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.header-links li a:hover {
+    color: #f0f0f0;
+
+}
+
+.sell-button {
+    background-color: white;
+    color: black!important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+.logout-button {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #444;
+}

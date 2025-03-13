@@ -1,0 +1,115 @@
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: white;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.profile-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ddd;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.edit-profile-button {
+    background-color: white;
+    color: red;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid red;
+    font-weight: bold;
+    text-align: center;
+    width: fit-content;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit-profile-button:hover {
+    background-color: red;
+    color: white;
+}
+
+.tabs {
+    display: flex;
+    justify-content: start;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.tab {
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    background: none;
+    border: none;
+}
+
+.tab.active {
+    color: red;
+}
+
+.tab:not(.active) {
+    color: black;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+}
+
+
+.product-card {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: #ddd;
+}
+
+.product-name {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,159 @@
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+.item-detail-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.item-image {
+    flex: 1;
+    padding: 20px;
+}
+
+.item-image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+
+.item-info {
+    flex: 2;
+    padding: 20px;
+}
+
+
+.item-info h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+
+.price {
+    font-size: 24px;
+    color: #ff7043;
+    margin-bottom: 15px;
+}
+
+
+.icons {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+
+.text-red-500 {
+    color: #e53e3e;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+.buy-button {
+    background-color: #ff7043;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #e65c2f;
+}
+
+
+.item-description,
+.item-details,
+.comments {
+    margin-top: 30px;
+}
+
+.item-description h2,
+.item-details h2,
+.comments h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.item-description p,
+.item-details p,
+.comments p {
+    font-size: 16px;
+    color: #555;
+}
+
+
+.comment-form {
+    margin-top: 30px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 100px;
+    box-sizing: border-box;
+}
+
+
+.comment-button {
+    background-color: #ff7043;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.comment-button:hover {
+    background-color: #e65c2f;
+}
+
+
+.comment {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment strong {
+    font-size: 16px;
+    color: #333;
+}
+
+
+.comment-form p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.comment-form p a:hover {
+    text-decoration: underline;
+}

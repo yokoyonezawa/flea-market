@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Favorite;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -21,7 +21,12 @@ class ProductController extends Controller
                 $items = $items->where('name', 'like', "%{$searchQuery}%");
             }
 
-            $items = $items->where('user_id', '!=', $user->id)->orWhereNull('user_id');
+            $items = $items->where(function ($query) use ($user) {
+                if ($user) {
+                    $query->where('user_id', '!=', $user->id);
+                }
+                $query->orWhereNull('user_id');
+            });
 
 
             $items = $items->get();
@@ -108,7 +113,7 @@ class ProductController extends Controller
             return view('sell', compact('categories', 'conditions'));
         }
 
-        public function store(StoreProductRequest $request)
+        public function store(ExhibitionRequest $request)
         {
             $imagePath = $request->file('image')->store('products', 'public');
 

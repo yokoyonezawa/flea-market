@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+
 @section('content')
 <div class="profile-container">
     <div class="profile-header">
-        <div class="profile-avatar"></div>
         <div class="profile-info">
-            <div class="profile-avatar">
+            <div class="profile-image">
                 @if(Auth::user()->profile && Auth::user()->profile->image)
                     <img src="{{ asset('storage/' . Auth::user()->profile->image) }}" alt="プロフィール画像">
                 @else
                     <img src="{{ asset('images/default-avatar.png') }}" alt="デフォルトプロフィール画像">
                 @endif
-        </div>
+            </div>
             <h2 class="username">{{ Auth::user()->name }}</h2>
-            <a href="{{ route('mypage.profile') }}" class="edit-profile-button">プロフィールを編集</a>
         </div>
+        <a href="{{ route('mypage.profile') }}" class="edit-profile-button">プロフィールを編集</a>
     </div>
-
     <div class="tabs">
         <button class="tab active" data-tab="selling" onclick="showTab('selling')">出品した商品</button>
         <button class="tab" data-tab="purchased" onclick="showTab('purchased')">購入した商品</button>

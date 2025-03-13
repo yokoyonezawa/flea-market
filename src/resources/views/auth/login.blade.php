@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Flea_Market</title>
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-<body>
-    <div class="header__logo">
-        <a href="{{ url('/') }}">
-            <img src="{{ asset('images/logo.svg') }}" alt="Logo">
-        </a>
-    </div>
-
+@section('content')
     <div class="login-container">
         <h2>ログイン</h2>
         <form action="{{ route('login') }}" method="POST">
@@ -48,4 +33,4 @@
             <a href="{{ route('register') }}">会員登録はこちら</a>
         </div>
     </div>
-</body>
+@endsection

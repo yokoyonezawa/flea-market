@@ -8,25 +8,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
+
 
 class RegisterController extends Controller
 {
 
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
 
     public function register(RegisterRequest $request)
     {
+
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            // 'email_verified_at' => Carbon::now(),
         ]);
 
-        auth()->login($user);
+        event(new Registered($user));
 
-        return redirect()->route('login');
+        Auth::login($user);
+
+        return redirect()->route('verification.notice');
     }
+
+
 }

@@ -1,0 +1,99 @@
+/* profile.css */
+
+/* プロフィールページ全体をターゲットにする */
+.profile-page {
+    font-family: Arial, sans-serif;
+}
+
+.profile-page .container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.profile-page .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-page label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-page input[type="text"],
+.profile-page input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.profile-page img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.profile-page button {
+    width: 100%;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-page button:hover {
+    background-color: #c0392b;
+}
+
+.profile-page p[style="color: green;"] {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-page .image-and-button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-page .custom-file-input {
+    display: none;
+}
+
+.profile-page .custom-file-label {
+    display: inline-block;
+    padding: 8px 16px;
+    color: #D73F09;
+    background-color: #fff;
+    border: 2px solid #D73F09;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-page .custom-file-label:hover {
+    background-color: #D73F09;
+    color: #fff;
+}

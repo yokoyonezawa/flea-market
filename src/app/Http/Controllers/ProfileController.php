@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        $profile = Auth::user()->profile ?? new Profile(); // プロフィールがなければ新規作成
+        $profile = Auth::user()->profile ?? new Profile();
         return view('mypage.profile', compact('profile'));
     }
 
@@ -28,7 +28,6 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
 
-        // 画像のアップロード処理
         if ($request->hasFile('image')) {
             if ($profile->image) {
                 Storage::delete($profile->image);
@@ -38,11 +37,9 @@ class ProfileController extends Controller
             $profile->image = $path;
         }
 
-        // データの保存
         $profile->fill($request->only('post_code', 'address', 'building_name'));
         $profile->save();
 
-        // プロフィール登録後に is_first_login を false にする
         if ($user->is_first_login) {
             $user->update(['is_first_login' => false]);
         }
@@ -50,11 +47,12 @@ class ProfileController extends Controller
         return redirect()->route('index')->with('success', 'プロフィールを更新しました。');
     }
 
-    public function editAddress()
-    {
-        $profile = Auth::user()->profile ?? new Profile();
-        return view('mypage.edit_address', compact('profile'));
-    }
+        public function editAddress()
+        {
+            $profile = Auth::user()->profile ?? new Profile();
+            return view('edit_address', compact('profile'));
+        }
+
 
     public function updateAddress(AddressRequest $request)
     {
@@ -62,23 +60,21 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
 
-        // 画像のアップロード処理
+
         if ($request->hasFile('image')) {
-            // 既存の画像を削除
             if ($profile->image) {
                 Storage::delete('public/' . $profile->image);
             }
 
-            // 新しい画像を保存
             $path = $request->file('image')->store('profiles', 'public');
             $profile->image = $path;
         }
 
-        // データの保存
         $profile->fill($request->validated());
         $profile->save();
 
         return redirect($request->input('return_url', route('mypage')))->with('success', '住所が更新されました。');
     }
+
 
 }

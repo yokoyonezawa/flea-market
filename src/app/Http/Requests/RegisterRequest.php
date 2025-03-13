@@ -44,7 +44,7 @@ class RegisterRequest extends FormRequest
             'email.email' => 'メールアドレスの形式ではございません',
             'email.max' => 'メールアドレスは191字が上限です',
             'password.required' => 'パスワードを入力してください',
-            'password.confirmed' => '確認用と一致しません',
+            'password.confirmed' => 'パスワードと一致しません',
             'password.min' => 'パスワードは最低8文字です',
             'password.max' => 'パスワードは最大20文字です',
         ];

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Profile;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PurchaseRequest;
 
 
 class PurchaseController extends Controller
@@ -19,7 +20,7 @@ class PurchaseController extends Controller
         return view('purchase', compact('item', 'profile'));
     }
 
-    public function process(Request $request, $id)
+    public function process(PurchaseRequest $request, $id)
     {
 
         $product = Product::findOrFail($id);

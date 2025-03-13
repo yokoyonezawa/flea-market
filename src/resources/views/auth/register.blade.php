@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+
 @section('content')
 <div class="register-container">
     <h2>会員登録</h2>
@@ -36,7 +38,7 @@
             <label for="password_confirmation">パスワード確認用</label>
             <div register_form>
                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" >
-                @error('passpassword-confirmationword')
+                @error('password-confirmationword')
                 <p class="error">{{ $message }}</p>
                 @enderror
             </div>

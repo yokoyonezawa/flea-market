@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ asset('css/item.css') }}">
+
 @section('content')
 <div class="item-detail-container">
-    <!-- 商品画像 -->
     <div class="item-image">
-        <img src="{{ $item->image_url }}" alt="{{ $item->name }}">
+        <img src="{{ Str::startsWith($item->image, 'http') ? $item->image : asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
     </div>
-
     <div class="item-info">
         <h1>{{ $item->name }}</h1>
         <p class="price">¥{{ number_format($item->price) }} (税込)</p>
-
         <div class="icons">
             <span>⭐ {{ $item->favorites_count }}</span>
             <span>💬 {{ $item->comments->count() ?? 1 }}</span>
         </div>
-
         @if ($item->sold)
             <span class="text-red-500 font-bold">SOLD</span>
         @else
@@ -23,13 +21,10 @@
                 <button type="submit" class="buy-button">購入手続きへ</button>
             </form>
         @endif
-
-
         <div class="item-description">
             <h2>商品説明</h2>
             <p>{{ $item->detail }}</p>
         </div>
-
         <div class="item-details">
             <h2>商品の情報</h2>
             <p>カテゴリー：
@@ -39,8 +34,6 @@
             </p>
             <p>商品の状態：{{ $item->condition->name }}</p>
         </div>
-
-        <!-- コメント一覧 -->
         <div class="comments">
             <h2>コメント ({{ $item->comments->count() }})</h2>
             @foreach ($item->comments as $comment)
@@ -50,7 +43,6 @@
                 </div>
             @endforeach
         </div>
-        <!-- コメント投稿 -->
         <div class="comment-form">
             <h2>商品へのコメント</h2>
             @auth
