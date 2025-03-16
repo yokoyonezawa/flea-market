@@ -10,31 +10,36 @@
     </div>
     <hr class="divider">
     <div class="product-grid">
-        @foreach($allProducts as $item)
-            <div class="product-card">
+    @foreach($allProducts as $item)
+        <div class="product-card">
+            <a href="{{ url('item', $item->id) }}">
                 @if(filter_var($item->image, FILTER_VALIDATE_URL))
                     <img src="{{ $item->image }}" alt="{{ $item->name }}">
                 @else
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
                 @endif
+            </a>
+            <a href="{{ url('item', $item->id) }}">
                 <p>{{ $item->name }}</p>
-                @if($item->sold)
-                    <span class="text-red-500 font-bold">SOLD</span>
-                @else
-                    <form action="{{ route('product.toggleFavorite', $item->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="favorite-btn">
-                            @if(auth()->user() && auth()->user()->favoriteProducts()->where('product_id', $item->id)->exists())
-                                ❤️ いいね済み
-                            @else
-                                🤍 いいね
-                            @endif
-                        </button>
-                    </form>
-                @endif
-            </div>
-        @endforeach
-    </div>
+            </a>
+            @if($item->sold)
+                <span class="text-red-500 font-bold">SOLD</span>
+            @else
+                <form action="{{ route('product.toggleFavorite', $item->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="favorite-btn">
+                        @if(auth()->user() && auth()->user()->favoriteProducts()->where('product_id', $item->id)->exists())
+                            ❤️ いいね済み
+                        @else
+                            🤍 いいね
+                        @endif
+                    </button>
+                </form>
+            @endif
+        </div>
+    @endforeach
+</div>
+
 </div>
 
 @endsection

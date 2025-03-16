@@ -91,10 +91,9 @@ class ProductController extends Controller
 
         public function show($id)
         {
-            // 商品詳細情報を取得
+
             $item = Product::withCount('favorites')->with(['comments.user', 'categories', 'condition'])->findOrFail($id);
 
-            // 購入ページへのURL
             $purchaseUrl = route('purchase', ['id' => $id]);
 
             return view('item', compact('item', 'purchaseUrl'));
