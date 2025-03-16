@@ -17,52 +17,32 @@
         </div>
         <a href="{{ route('mypage.profile') }}" class="edit-profile-button">プロフィールを編集</a>
     </div>
+
     <div class="tabs">
-        <button class="tab active" data-tab="selling" onclick="showTab('selling')">出品した商品</button>
-        <button class="tab" data-tab="purchased" onclick="showTab('purchased')">購入した商品</button>
+        <a href="{{ route('mypage', ['page' => 'sell']) }}" class="tab {{ $page === 'sell' ? 'active' : '' }}">出品した商品</a>
+        <a href="{{ route('mypage', ['page' => 'buy']) }}" class="tab {{ $page === 'buy' ? 'active' : '' }}">購入した商品</a>
     </div>
 
-    <div id="selling" class="tab-content">
+    @if ($page === 'sell')
         <div class="product-grid">
             @foreach ($sellingProducts as $product)
                 <div class="product-card">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="商品画像">
+                    <img src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' . $product->image) }}" alt="商品画像">
                     <p class="product-name">{{ $product->name }}</p>
                 </div>
             @endforeach
         </div>
-    </div>
-
-    <div id="purchased" class="tab-content hidden">
+    @elseif ($page === 'buy')
         <div class="product-grid">
             @foreach ($purchasedProducts as $purchase)
                 @if ($purchase->product)
                     <div class="product-card">
-                        <img src="{{ $purchase->product->image }}" alt="商品画像">
+                        <img src="{{ Str::startsWith($purchase->product->image, 'http') ? $purchase->product->image : asset('storage/' . $purchase->product->image) }}" alt="商品画像">
                         <p class="product-name">{{ $purchase->product->name }}</p>
                     </div>
                 @endif
             @endforeach
         </div>
-    </div>
+    @endif
 </div>
-
-
-<script>
-function showTab(tabId) {
-
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
-
-    let selectedTab = document.querySelector(`#${tabId}`);
-    if (selectedTab) {
-        selectedTab.classList.remove('hidden');
-    }
-
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-
-    document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
-}
-</script>
-
-
 @endsection
