@@ -64,6 +64,11 @@ Laravel Framework 8.83.29
 - ユーザー名: laravel_user
 
 ## テーブル設計
+![テーブル設計](src/docs/table1-2.png)
+![テーブル設計](src/docs/table3-4.png)
+![テーブル設計](src/docs/table5-6.png)
+![テーブル設計](src/docs/table7-8.png)
+
 
 ## ER図
 ![ER図](src/docs/er.png)
