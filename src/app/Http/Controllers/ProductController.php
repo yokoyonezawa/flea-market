@@ -40,19 +40,15 @@ class ProductController extends Controller
 
             if (auth()->check()) {
                 $user = auth()->user();
-                // ユーザーの「いいねした商品」を取得
-                $favoriteProducts = $user->favoriteProducts()->get(); // get()を追加
+                $favoriteProducts = $user->favoriteProducts()->get();
 
-                // ユーザーが出品した商品を取得
                 $userProducts = $user->products;
 
-                // 検索クエリがある場合のみフィルタリング
                 if ($searchQuery) {
                     $favoriteProducts = $favoriteProducts->where('name', 'like', "%{$searchQuery}%");
                     $userProducts = $userProducts->where('name', 'like', "%{$searchQuery}%");
                 }
 
-                // 両方のコレクションを1つにまとめる
                 $allProducts = $favoriteProducts->merge($userProducts);
             } else {
                 $allProducts = collect();

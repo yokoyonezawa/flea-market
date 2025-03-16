@@ -12,7 +12,7 @@ class ItemController extends Controller
     public function show($id)
     {
         $item = Product::with(['category', 'comments.user'])->findOrFail($id);
-        $purchaseUrl = route('purchase', ['id' => $item->id]); // URLをコントローラーで作成
+        $purchaseUrl = route('purchase', ['id' => $item->id]);
 
         return view('item', compact('item', 'purchaseUrl'));
     }

@@ -20,18 +20,15 @@ class StripePaymentController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // すでに売れていたらリダイレクト
         if ($product->sold) {
             return redirect()->route('product.purchase', $id)->with('error', 'この商品は売り切れです。');
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        // フォームから受け取るデータ（空ならデフォルト値）
         $itemName = $request->input('item_name', $product->name);
         $amount = intval($request->input('amount', $product->price));
 
-        // Stripe 決済セッション作成
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
@@ -57,7 +54,6 @@ class StripePaymentController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // 商品をSOLDにする
         $product->update(['sold' => true]);
         $product->sold = true;
         $product->save();

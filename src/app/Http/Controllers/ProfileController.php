@@ -22,7 +22,7 @@ class ProfileController extends Controller
             'post_code' => 'nullable|string|max:10',
             'address' => 'nullable|string|max:255',
             'building_name' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:2048', // 画像のバリデーション
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $user = Auth::user();

@@ -19,13 +19,11 @@ class Purchase extends Model
         'payment_method'
     ];
 
-    // ユーザーとのリレーション
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // 商品とのリレーション
     public function product()
     {
         return $this->belongsTo(Product::class);

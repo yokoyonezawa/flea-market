@@ -40,7 +40,7 @@ class Product extends Model
 
     public function condition()
     {
-        return $this->belongsTo(Condition::class);  // もし `Condition` モデルがある場合
+        return $this->belongsTo(Condition::class);
     }
 
     public function comments()

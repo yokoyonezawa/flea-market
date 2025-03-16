@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class); // もしくは別のモデル名
+        return $this->hasMany(Purchase::class);
     }
 
 }
