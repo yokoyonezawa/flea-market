@@ -49,6 +49,7 @@ class RatingController extends Controller
             $seller->notify(new TransactionCompleted($purchase));
         }
 
+
         $ratedUserIds = Rating::where('purchase_id', $purchase->id)->pluck('user_id')->toArray();
 
         if (in_array($purchase->seller_id, $ratedUserIds) && in_array($purchase->buyer_id, $ratedUserIds)) {
