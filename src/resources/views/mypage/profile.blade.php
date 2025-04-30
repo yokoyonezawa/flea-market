@@ -17,6 +17,13 @@
 
             <div class="form-group image-upload-container">
                 <label>プロフィール画像</label><br>
+
+                @if ($user ?? ''->averageRating() !== null)
+                    <p>評価: {{ $user ?? ''->averageRating() }} / 5</p>
+                @else
+                    <p>評価はまだありません。</p>
+                @endif
+
                 <div class="image-and-button">
                     @if($profile->image)
                         <img src="{{ asset('storage/' . $profile->image) }}" alt="プロフィール画像" width="150">

@@ -69,4 +69,27 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Product::class);
     }
 
+    public function receivedRatings()
+{
+    return $this->hasManyThrough(
+        \App\Models\Rating::class,
+        \App\Models\Purchase::class,
+        'seller_id',
+        'purchase_id',
+        'id',
+        'id'
+    )->whereColumn('ratings.user_id', '!=', 'purchases.seller_id');
+}
+
+    public function averageRating()
+    {
+        $average = $this->receivedRatings()->avg('rating');
+
+        return $average ? round($average) : null;
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

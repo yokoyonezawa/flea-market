@@ -76,5 +76,10 @@ class ProfileController extends Controller
         return redirect($request->input('return_url', route('mypage')))->with('success', '住所が更新されました。');
     }
 
+    public function showProfile($id)
+    {
+        $user = User::findOrFail($id);
+        return view('mypage.profile', compact('user'));
+    }
 
 }
