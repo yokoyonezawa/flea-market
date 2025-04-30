@@ -16,12 +16,46 @@ class MypageController extends Controller
 
         $sellingProducts = collect();
         $purchasedProducts = collect();
-        if ($page === 'sell') {
-            $sellingProducts = Product::where('user_id', $user->id)->get();
-        } elseif ($page === 'buy') {
-            $purchasedProducts = Purchase::where('user_id', $user->id)->with('product')->get();
-        }
+        $tradingProducts = collect();
 
-        return view('mypage.mypage', compact('user', 'sellingProducts', 'purchasedProducts', 'page'));
+
+        $tradingProductsQuery = Purchase::where(function ($query) use ($user) {
+            $query->where('user_id', $user->id)
+                ->whereHas('product', function ($q) {
+                    $q->where('transaction_status', Product::STATUS_TRADING);
+                });
+        })
+        ->orWhereHas('product', function ($query) use ($user) {
+            $query->where('user_id', $user->id)
+                ->where('transaction_status', Product::STATUS_TRADING);
+        })
+        ->where('status', 'trading')
+        ->with('product');
+
+        $messageCount = $tradingProductsQuery->get()->map(function ($purchase) {
+            return $purchase->messages()
+                ->where('user_id', '!=', auth()->id())
+                ->where('is_read', false)
+                ->count();
+        })->sum();
+
+
+    if ($page === 'sell') {
+        $sellingProducts = Product::where('user_id', $user->id)->get();
+
+    } elseif ($page === 'buy') {
+        $purchasedProducts = Purchase::where('user_id', $user->id)
+            ->whereHas('product', function ($query) {
+                $query->where('transaction_status', Product::STATUS_COMPLETED);
+            })
+            ->with('product')
+            ->get();
+
+    } elseif ($page === 'trading') {
+        $tradingProducts = $tradingProductsQuery->get();
     }
+
+    return view('mypage.mypage', compact('user', 'sellingProducts', 'purchasedProducts', 'tradingProducts', 'messageCount', 'page'));
+}
+
 }

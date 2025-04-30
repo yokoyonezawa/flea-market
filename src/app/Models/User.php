@@ -44,14 +44,29 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
     }
 
-    public function products()
+        // ユーザーが出品している商品
+    public function listedProducts()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    // ユーザーが所有している商品
+    public function ownedProducts()
     {
         return $this->hasMany(Product::class);
     }
 
+
+
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 
 }

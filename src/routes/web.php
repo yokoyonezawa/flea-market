@@ -20,6 +20,9 @@ use App\Mail\TestMail;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\TradingController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\RatingController;
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
@@ -83,6 +86,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [ProductController::class, 'create'])->name('sell');
 
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+
+    Route::get('/purchase/trading/{id}', [TradingController::class, 'trading'])->name('purchase.trading');
+
+    Route::post('/purchase/complete/{purchase}', [PurchaseController::class, 'complete'])->name('purchase.complete');
+
+    Route::post('/messages/{purchase}', [MessageController::class, 'store'])->name('message.store');
+
+    Route::get('/trading/{id}', [TradingController::class, 'trading'])->name('trading.show');
+
+    Route::post('/purchase/{id}/complete', [TradingController::class, 'completeTransaction'])->name('purchase.complete');
+
+
+    Route::get('/messages/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
+
+    Route::post('/messages/{message}/update', [MessageController::class, 'update'])->name('message.update');
+
+
+    Route::delete('/messages/{message}/delete', [MessageController::class, 'destroy'])->name('message.destroy');
+
+    Route::get('/rating/{purchaseId}', [RatingController::class, 'create'])->name('rating.create');
+
+    Route::post('/rating/{purchaseId}', [RatingController::class, 'store'])->name('rating.store');
+
+
 
 
 });

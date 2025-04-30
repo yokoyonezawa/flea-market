@@ -15,11 +15,16 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // 購入者
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // 購入した商品
-            $table->decimal('total_price', 10, 2); // 合計金額
-            $table->foreignId('profile_id')->nullable()->constrained()->onDelete('set null'); // 住所情報
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('buyer_id')->nullable();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->decimal('total_price', 10, 2);
+            $table->foreignId('profile_id')->nullable()->constrained()->onDelete('set null');
             $table->string('payment_method');
+            $table->string('status')->default('trading');
+            $table->boolean('seller_completed')->default(false);
+            $table->boolean('buyer_completed')->default(false);
             $table->timestamps();
         });
     }

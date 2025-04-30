@@ -21,14 +21,22 @@
     <div class="tabs">
         <a href="{{ route('mypage', ['page' => 'sell']) }}" class="tab {{ $page === 'sell' ? 'active' : '' }}">出品した商品</a>
         <a href="{{ route('mypage', ['page' => 'buy']) }}" class="tab {{ $page === 'buy' ? 'active' : '' }}">購入した商品</a>
+        <a href="{{ route('mypage', ['page' => 'trading']) }}" class="tab {{ $page === 'trading' ? 'active' : '' }}">
+            取引中の商品
+            @if ($messageCount > 0)
+                <span class="message-badge1">{{ $messageCount }}</span>
+            @endif
+        </a>
     </div>
 
     @if ($page === 'sell')
         <div class="product-grid">
             @foreach ($sellingProducts as $product)
                 <div class="product-card">
-                    <img src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' . $product->image) }}" alt="商品画像">
-                    <p class="product-name">{{ $product->name }}</p>
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' . $product->image) }}" alt="商品画像">
+                        <p class="product-name">{{ $product->name }}</p>
+                    </a>
                 </div>
             @endforeach
         </div>
@@ -37,8 +45,29 @@
             @foreach ($purchasedProducts as $purchase)
                 @if ($purchase->product)
                     <div class="product-card">
-                        <img src="{{ Str::startsWith($purchase->product->image, 'http') ? $purchase->product->image : asset('storage/' . $purchase->product->image) }}" alt="商品画像">
-                        <p class="product-name">{{ $purchase->product->name }}</p>
+                        <a href="{{ route('product.show', ['id' => $purchase->product->id]) }}">
+                            <img src="{{ Str::startsWith($purchase->product->image, 'http') ? $purchase->product->image : asset('storage/' . $purchase->product->image) }}" alt="商品画像">
+                            <p class="product-name">{{ $purchase->product->name }}</p>
+                        </a>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    @elseif ($page === 'trading')
+        <div class="product-grid">
+            @foreach ($tradingProducts as $purchase)
+                @if ($purchase->product)
+                    <div class="product-card">
+                        <a href="{{ route('purchase.trading', ['id' => $purchase->id]) }}">
+                            <img src="{{ Str::startsWith($purchase->product->image, 'http') ? $purchase->product->image : asset('storage/' . $purchase->product->image) }}" alt="商品画像">
+                            @php
+                                $messageCountForProduct = $purchase->messages()->where('user_id', '!=', auth()->id())->where('is_read', false)->count();
+                            @endphp
+                            @if ($messageCountForProduct > 0)
+                                <div class="message-badge">{{ $messageCountForProduct }}</div>
+                            @endif
+                            <p class="product-name">{{ $purchase->product->name }}</p>
+                        </a>
                     </div>
                 @endif
             @endforeach

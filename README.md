@@ -174,3 +174,34 @@ php artisan config:clear
 php artisan cache:clear
 
 php artisan route:clear
+
+# ユーザーのダミーデータについて
+
+    $user1 = User::create([
+        'name' => '出品者1',
+        'email' => 'yoko@yahoo.co.jp',
+        'password' => bcrypt('11111111'),
+    ]);
+
+    $user2 = User::create([
+        'name' => '出品者2',
+        'email' => 'yuhi@yahoo.co.jp',
+        'password' => bcrypt('11111111'),
+    ]);
+
+    $user3 = User::create([
+        'name' => '出品していないユーザー',
+        'email' => 'toru@yahoo.co.jp',
+        'password' => bcrypt('11111111'),
+    ]);
+
+## メール認証を実装しているので、簡易的にメール認証を潜り抜けてください
+　　ターミナルにて、下記を打ち込んでください。
+
+php artisan tinker
+
+$user = App\Models\User::where('email', 'yoko@yahoo.co.jp')->first();
+（ここのメールアドレスを変更して、「yuhi@yahoo.co.jp」「toru@yahoo.co.jp」も同じようにメール認証の対策をしてください。）
+
+$user->email_verified_at = now();
+$user->save();

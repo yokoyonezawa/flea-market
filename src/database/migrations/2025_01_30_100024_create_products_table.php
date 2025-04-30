@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('detail');
             $table->decimal('price');
             $table->boolean('sold')->default(false);
+            $table->string('transaction_status')->default('available');
             $table->timestamps();
         });
     }

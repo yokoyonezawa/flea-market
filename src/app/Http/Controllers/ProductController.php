@@ -121,6 +121,7 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'condition_id' => $request->condition_id,
                 'image' => $imagePath,
+                'transaction_status' => Product::STATUS_AVAILABLE,
             ]);
 
             return redirect()->route('index')->with('success', '商品を出品しました！');

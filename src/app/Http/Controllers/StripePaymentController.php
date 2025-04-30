@@ -21,7 +21,9 @@ class StripePaymentController extends Controller
         $product = Product::findOrFail($id);
 
         if ($product->sold) {
-            return redirect()->route('product.purchase', $id)->with('error', 'この商品は売り切れです。');
+            return redirect('/')->with('error', 'この商品は売り切れです。');
+
+
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -54,9 +56,10 @@ class StripePaymentController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $product->update(['sold' => true]);
-        $product->sold = true;
-        $product->save();
+        $product->update([
+            'sold' => true,
+            'transaction_status' => Product::STATUS_TRADING,
+        ]);
 
         return view('purchase.success', compact('product'));
     }

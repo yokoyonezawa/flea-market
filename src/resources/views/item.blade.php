@@ -27,11 +27,7 @@
         </div>
         <div class="item-details">
             <h2>商品の情報</h2>
-            <p>カテゴリー：
-                @foreach ($item->categories as $category)
-                {{ $category->name }}@if(!$loop->last), @endif
-                @endforeach
-            </p>
+            <p>カテゴリー：{{ $item->category->name }}</p>
             <p>商品の状態：{{ $item->condition->name }}</p>
         </div>
         <div class="comments">
