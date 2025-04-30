@@ -179,7 +179,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         showRatingModal();
     });
-@endif
+    @endif
 
 </script>
 

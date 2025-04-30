@@ -95,6 +95,8 @@ class TradingController extends Controller
         $purchase = Purchase::findOrFail($id);
         $product = $purchase->product;
 
+        dd($product->user->email);//デバッグ
+
         $purchase->status = 'complete';
         $purchase->save();
 

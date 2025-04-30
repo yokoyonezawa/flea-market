@@ -16,7 +16,7 @@ class TransactionCompleted extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Purchase $purchase)
     {
         $this->purchase = $purchase;
     }
@@ -42,12 +42,9 @@ class TransactionCompleted extends Notification
     {
         return (new MailMessage)
                     ->subject('取引が完了しました')
-                    ->greeting('こんにちは、' . $notifiable->name . 'さん！')
-                    ->line('購入者が取引を完了しました。以下の取引内容をご確認ください。')
-                    ->line('商品名: ' . $this->purchase->product->name)
-                    ->line('価格: ' . number_format($this->purchase->product->price) . '円')
-                    ->action('取引詳細を見る', route('purchase.show', ['id' => $this->purchase->id]))
-                    ->line('ありがとうございました！');
+                    ->line('取引が完了しました。')
+                    ->action('詳細を確認', route('purchase.trading', $this->purchase->id))
+                    ->line('ご確認いただきありがとうございます。');
     }
 
     /**
