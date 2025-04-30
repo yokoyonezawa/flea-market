@@ -163,7 +163,7 @@
     padding-top: 20px;
     position: absolute;
     bottom: 20px;
-    width: 80%;
+    /* width: 80%; */
 }
 
 .message-form input[type="text"] {
@@ -198,9 +198,9 @@
     vertical-align: middle;
 }
 
-.message-form input[type="text"] {
+/* .message-form input[type="text"] {
     max-width: 70%;
-}
+} */
 
 .product-name {
     background-color: #d3d3d3;
@@ -288,7 +288,6 @@ ul {
 .rating-box {
     background-color: #fffde7;
     border-radius: 10px;
-    /* padding: 20px; */
     width: 100%;
     max-width: 300px;
     text-align: center;
@@ -358,4 +357,16 @@ ul {
 
 .text-red-500 {
     color:red;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+
+.message-form input[type="text"] {
+    flex-grow: 1;
+    min-width: 1000px;
 }

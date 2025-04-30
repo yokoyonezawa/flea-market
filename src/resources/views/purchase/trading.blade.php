@@ -7,7 +7,7 @@
     <div class="sidebar">
         <h3>その他の取引</h3>
         <ul>
-            @foreach($tradingProducts as $otherPurchase)z
+            @foreach($tradingProducts as $otherPurchase)
                 @if ($otherPurchase->id !== $purchase->id)
                     <li>
                         <a href="{{ route('purchase.trading', ['id' => $otherPurchase->id]) }}" class="product-name">
@@ -79,25 +79,27 @@
     </div>
         <form method="POST" action="{{ route('message.store', $purchase->id) }}" enctype="multipart/form-data" class="message-form">
             @csrf
-            <input type="text" name="content" placeholder="取引メッセージを記入してください" value="{{ old('content') }}">
-
-            {{-- content フィールドのエラーメッセージ表示 --}}
-            @error('content')
-            <div class="text-red-500">{{ $message }}</div>
-            @enderror
-
-            <input type="file" name="image" id="image-upload" class="hidden-file">
-            <label for="image-upload" class="add-image">画像を追加</label>
+            <div class="form-group">
+                {{-- content フィールドのエラーメッセージ表示 --}}
+                @error('content')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+                <input type="text" name="content" id="chat-input" placeholder="取引メッセージを記入してください" value="{{ old('content') }}">
+            </div>
+                <input type="file" name="image" id="image-upload" class="hidden-file">
+                <label for="image-upload" class="add-image">画像を追加</label>
 
             {{-- image フィールドのエラーメッセージ表示 --}}
             @error('image')
-                <div class="text-red-500">{{ $message }}</div>
+            <div class="text-red-500">{{ $message }}</div>
             @enderror
 
             <button type="submit" class="send-btn">
                 <img src="{{ asset('images/送信_飛行機.png') }}" alt="Airplane" class="airplane-icon">
             </button>
         </form>
+
+        </div>
     </div>
 </div>
 
@@ -119,6 +121,7 @@
         </div>
     </div>
 </div>
+
 
 
 

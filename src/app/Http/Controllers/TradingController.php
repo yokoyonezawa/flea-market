@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\Rating;
+use App\Notifications\TransactionCompleted;
 
 
 
@@ -100,6 +101,9 @@ class TradingController extends Controller
         $product->transaction_status = 'sold';
         $product->sold = true;
         $product->save();
+
+        $seller = $product->user;
+        $seller->notify(new TransactionCompleted($purchase));
 
         return redirect()->route('purchase.trading', $purchase->id);
     }
