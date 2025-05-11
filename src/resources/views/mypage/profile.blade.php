@@ -18,11 +18,21 @@
             <div class="form-group image-upload-container">
                 <label>プロフィール画像</label><br>
 
-                @if ($user ?? ''->averageRating() !== null)
-                    <p>評価: {{ $user ?? ''->averageRating() }} / 5</p>
+                <!-- @isset($user)
+                    @if ($user->averageRating() !== null)
+                        <p>評価: {{ $user->averageRating() }} / 5</p>
+                    @else
+                        <p>評価はまだありません。</p>
+                    @endif
+                @endisset -->
+
+                @if (auth()->user()->averageRating() !== null)
+                    <p>評価: {{ auth()->user()->averageRating() }} / 5</p>
                 @else
                     <p>評価はまだありません。</p>
                 @endif
+
+
 
                 <div class="image-and-button">
                     @if($profile->image)
