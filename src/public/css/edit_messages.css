@@ -1,0 +1,10 @@
+textarea[name="content"] {
+    font-size: 18px;
+    padding: 10px;
+    height: 100px;
+    width: 50%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}

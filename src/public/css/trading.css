@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    height: 100%;
+}
+
+
 .trade-page {
     display: flex;
     height: 100vh;
@@ -16,6 +22,9 @@
     padding: 20px;
     background: #fff;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .header {
@@ -65,6 +74,8 @@
 .chat-area {
     border-top: 1px solid #ccc;
     padding-top: 20px;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .message-content-container.sent {
@@ -156,20 +167,33 @@
     text-decoration: none;
 }
 
-.message-form {
+/* .message-form {
     display: flex;
     align-items: center;
     border-top: 1px solid #ccc;
     padding-top: 20px;
-    position: absolute;
-    bottom: 20px;
-    /* width: 80%; */
+} */
+
+.message-form {
+    position: static;
+    padding-top: 20px;
+    background: white;
+    border-top: 1px solid #ccc;
 }
 
 .message-form input[type="text"] {
     flex-grow: 1;
     padding: 10px;
     margin-right: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .message-form input[type="text"] {
+        min-width: 0;
+        width: 100%;
+    }
 }
 
 .add-image {
@@ -198,9 +222,6 @@
     vertical-align: middle;
 }
 
-/* .message-form input[type="text"] {
-    max-width: 70%;
-} */
 
 .product-name {
     background-color: #d3d3d3;
@@ -365,8 +386,3 @@ ul {
     margin-bottom: 1rem;
 }
 
-
-.message-form input[type="text"] {
-    flex-grow: 1;
-    min-width: 1000px;
-}

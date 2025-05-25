@@ -11,7 +11,7 @@
 
         <div class="form-group">
             <label>内容</label>
-            <input type="text" name="content" value="{{ old('content', $message->content) }}" class="form-control">
+            <textarea name="content" class="form-control">{{ old('content', $message->content) }}</textarea>
         </div>
 
         <div class="form-group">

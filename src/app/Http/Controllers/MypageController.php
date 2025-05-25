@@ -52,7 +52,16 @@ class MypageController extends Controller
             ->get();
 
     } elseif ($page === 'trading') {
-        $tradingProducts = $tradingProductsQuery->get();
+        // $tradingProducts = $tradingProductsQuery->get();
+        $tradingProducts = $tradingProductsQuery
+        ->with(['messages' => function ($query) {
+            $query->latest(); // 最新のメッセージ順で取得
+        }])
+        ->get()
+        ->sortByDesc(function ($purchase) {
+            return optional($purchase->messages->first())->created_at;
+        })
+        ->values();
     }
 
     return view('mypage.mypage', compact('user', 'sellingProducts', 'purchasedProducts', 'tradingProducts', 'messageCount', 'page'));

@@ -15,22 +15,32 @@
             @csrf
             @method('POST')
 
+    <div class="rating">
+        <label>評価:</label>
+        @php
+            $rawRating = auth()->user()->averageRating();
+            $roundedRating = is_null($rawRating) ? null : round($rawRating); // 四捨五入
+        @endphp
+
+        @if ($roundedRating !== null)
+            @for ($i = 0; $i < $roundedRating; $i++)
+                <span style="color: gold;">★</span>
+            @endfor
+
+            @for ($i = $roundedRating; $i < 5; $i++)
+                <span style="color: #ccc;">☆</span>
+            @endfor
+
+            <span style="margin-left: 5px;">{{ number_format($rawRating, 1) }} / 5</span>
+        @else
+            <p>評価はまだありません。</p>
+        @endif
+    </div>
+
+
+
             <div class="form-group image-upload-container">
                 <label>プロフィール画像</label><br>
-
-                <!-- @isset($user)
-                    @if ($user->averageRating() !== null)
-                        <p>評価: {{ $user->averageRating() }} / 5</p>
-                    @else
-                        <p>評価はまだありません。</p>
-                    @endif
-                @endisset -->
-
-                @if (auth()->user()->averageRating() !== null)
-                    <p>評価: {{ auth()->user()->averageRating() }} / 5</p>
-                @else
-                    <p>評価はまだありません。</p>
-                @endif
 
 
 

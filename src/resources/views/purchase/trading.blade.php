@@ -181,6 +181,25 @@
     });
     @endif
 
+    const chatInput = document.getElementById('chat-input');
+    const storageKey = 'chatInputValue';
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedValue = localStorage.getItem(storageKey);
+        if (savedValue !== null) {
+            chatInput.value = savedValue;
+        }
+    });
+
+    chatInput.addEventListener('input', () => {
+        localStorage.setItem(storageKey, chatInput.value);
+    });
+
+    const messageForm = document.querySelector('.message-form');
+    messageForm.addEventListener('submit', () => {
+        localStorage.removeItem(storageKey);
+    });
+
 </script>
 
 
