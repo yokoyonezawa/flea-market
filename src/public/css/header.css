@@ -2,6 +2,7 @@ header {
     background-color: black;
     color: white;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
@@ -16,6 +17,12 @@ header {
     align-items: center;
     width: 100%;
     max-width: 500px;
+}
+
+.header-search {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px 0;
 }
 
 
@@ -46,8 +53,11 @@ header {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
-
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    margin: 10px 0;
+    padding: 0;
 }
 
 
@@ -85,4 +95,35 @@ nav ul {
 
 .logout-button:hover {
     background-color: #444;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-search {
+        width: 100%;
+    }
+
+    nav ul {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .header-links li,
+    .logout-button,
+    .sell-button {
+        font-size: 14px;
+    }
+
+    .search-box {
+        font-size: 13px;
+    }
+
+    .search-button {
+        font-size: 13px;
+    }
 }

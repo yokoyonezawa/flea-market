@@ -13,6 +13,27 @@
                     <img src="{{ asset('images/default-avatar.png') }}" alt="デフォルトプロフィール画像">
                 @endif
             </div>
+            <div class="rating">
+                <label>評価:</label>
+                @php
+                    $rawRating = auth()->user()->averageRating();
+                    $roundedRating = is_null($rawRating) ? null : round($rawRating); // 四捨五入
+                @endphp
+
+                @if ($roundedRating !== null)
+                    @for ($i = 0; $i < $roundedRating; $i++)
+                        <span style="color: gold;">★</span>
+                    @endfor
+
+                    @for ($i = $roundedRating; $i < 5; $i++)
+                        <span style="color: #ccc;">☆</span>
+                    @endfor
+
+                @else
+                    <p>評価はまだありません。</p>
+                @endif
+            </div>
+
             <h2 class="username">{{ Auth::user()->name }}</h2>
         </div>
         <a href="{{ route('mypage.profile') }}" class="edit-profile-button">プロフィールを編集</a>
